@@ -1,37 +1,22 @@
-const fsPromises = require("fs").promises;
-const screenshot = require("screenshot-desktop");
-const getPath = require("platform-folders");
-const format = require("date-fns").format;
-const mkdirp = require("mkdirp");
+const {
+  startTakingScreenshots,
+  stopTakingScreenshots
+} = require("./screenshotManager");
 
-function screenshotAndSave() {
-  screenshot.all().then(imgs => {
-    const image_path = `${getPath.getDocumentsFolder()}/${getAppName()}/${getTodayFolderName()}/${getNowFolderName()}`;
-    mkdirp(image_path, async () => {
-      imgs.forEach(async (img, index) => {
-        await fsPromises.writeFile(`${image_path}/${index}.jpg`, img);
-      });
-      console.log("Screenshots Saved.");
-    });
-  });
-}
+document.querySelector("#take-screenshot").addEventListener("click", () => {
+  screenshotAndSave();
+  console.log("Taking Screenshot");
+});
 
-function getTodayFolderName() {
-  return format(new Date(), "M-D-YYYY");
-}
+document.querySelector("#toggle-screenshots").addEventListener("click", () => {
+  const button = document.getElementById("toggle-screenshots");
+  if (button.innerHTML === "Start") {
+    startTakingScreenshots();
+    button.innerHTML = "Stop";
+  } else {
+    stopTakingScreenshots();
+    button.innerHTML = "Start";
+  }
+});
 
-function getNowFolderName() {
-  return format(new Date(), "hh.mm.ss A");
-}
-
-function getAppName() {
-  return "ScreenShooter";
-}
-
-function main() {
-  setInterval(() => {
-    screenshotAndSave();
-  }, 10000);
-}
-
-main();
+startTakingScreenshots();

@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "date-fns": "^1.30.1",
+    "menubar": "^6.0.6",
     "mkdirp": "^0.5.1",
     "platform-folders": "^0.4.0",
     "screenshot-desktop": "^1.8.0"
