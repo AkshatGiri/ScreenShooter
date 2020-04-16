@@ -16,6 +16,15 @@ import numpy as np
 import glob
 import os
 import sys
+from pathlib import Path
+
+
+# only works for macos for now
+def get_documents_path():
+    return f"{str(Path.home())}/Documents"
+
+def get_output_folder_path():
+    return get_documents_path() + "/ScreenShooter/Finals"
 
 if len(sys.argv) < 2:
     raise Exception('No path to screenshot folder was passed')
@@ -35,9 +44,11 @@ height, width, layers = img.shape
 size = (width,height)
 print(width, height)
 
+# making sure output folder exists
+Path(get_output_folder_path()).mkdir(exist_ok=True)
+
 # video output
-# TODO: add support for taking export folder as an input
-out = cv2.VideoWriter(folder_name + ' screen 1.mp4', cv2.VideoWriter_fourcc(*'MP4V'), 8, size)
+out = cv2.VideoWriter(get_output_folder_path() + "/" + folder_name + ' screen 1.mp4', cv2.VideoWriter_fourcc(*'MP4V'), 8, size)
 
 current_img_processing = 1 # keeps track of how many images have been processed
 total_imgs = len(files)
