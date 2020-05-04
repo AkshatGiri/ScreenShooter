@@ -2,7 +2,7 @@ const { menubar } = require("menubar");
 
 function main() {
   const mb = menubar({
-    icon: "./enabled.png",
+    icon: __dirname + "/camera.png",
     preloadWindow: true,
     browserWindow: {
       width: 100,

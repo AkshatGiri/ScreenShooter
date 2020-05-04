@@ -9,6 +9,8 @@ First part of the program is written using electron and nodejs. So install nodej
 
 To start the app run  
  `electron app.js`
+ or 
+ `npm run start`
 
 To get the video creator to work you would need these python dependencies, 
 

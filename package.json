@@ -2,12 +2,14 @@
   "name": "screenshotter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron app.js",
+    "package-mac": "electron-packager . ScreenShooter --electron-version 8.2.1 --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds"
   },
   "keywords": [],
-  "author": "",
+  "author": "Akshat Giri",
   "license": "ISC",
   "dependencies": {
     "date-fns": "^1.30.1",
