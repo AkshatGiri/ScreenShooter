@@ -7,6 +7,8 @@ function main() {
     browserWindow: {
       width: 250,
       height: 150,
+      // width: 500, 
+      // height: 500,
       webPreferences: {
         nodeIntegration: true
       }
