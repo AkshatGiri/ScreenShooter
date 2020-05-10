@@ -41,7 +41,7 @@ document.querySelector("#take-screenshot").addEventListener("click", () => {
 
 document.querySelector("#toggle-screenshots").addEventListener("click", () => {
   const button = document.getElementById("toggle-screenshots");
-  if (button.innerHTML === "Start") {
+  if (appState !== STATES.active) {
     setAppStatus(STATES.active);
     button.innerHTML = "Pause";
   } else {
