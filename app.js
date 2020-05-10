@@ -5,8 +5,8 @@ function main() {
     icon: __dirname + "/camera.png",
     preloadWindow: true,
     browserWindow: {
-      width: 100,
-      height: 100,
+      width: 250,
+      height: 150,
       webPreferences: {
         nodeIntegration: true
       }

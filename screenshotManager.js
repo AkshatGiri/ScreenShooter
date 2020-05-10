@@ -1,19 +1,21 @@
+// packages
 const fsPromises = require("fs").promises;
 const screenshot = require("screenshot-desktop");
 const getPath = require("platform-folders");
 const format = require("date-fns").format;
 const mkdirp = require("mkdirp");
 
-let screenshotTimer;
+// custom imports
+const { log } = require("./logger");
 
 function screenshotAndSave() {
-  screenshot.all().then(imgs => {
+  screenshot.all().then((imgs) => {
     const image_path = `${getPath.getDocumentsFolder()}/${getAppName()}/${getTodayFolderName()}/${getNowFolderName()}`;
     mkdirp(image_path, async () => {
       imgs.forEach(async (img, index) => {
         await fsPromises.writeFile(`${image_path}/${index}.jpg`, img);
       });
-      console.log("Screenshots Saved.");
+      log("Screenshots Saved.");
     });
   });
 }
@@ -30,22 +32,6 @@ function getAppName() {
   return "ScreenShooter";
 }
 
-function takeScreenshot() {
-  screenshotAndSave();
-}
-
-function startTakingScreenshots() {
-  screenshotTimer = setInterval(() => {
-    screenshotAndSave();
-  }, 10000);
-}
-
-function stopTakingScreenshots() {
-  clearInterval(screenshotTimer);
-}
-
 module.exports = {
-  takeScreenshot,
-  startTakingScreenshots,
-  stopTakingScreenshots
+  screenshotAndSave,
 };

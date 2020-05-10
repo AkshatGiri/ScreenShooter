@@ -5,10 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
+    <style>
+
+      body {
+        background-color: #121212;
+        color: #f3f3f3;
+        font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
+      }
+
+      @media screen and (prefers-color-scheme: light) {
+        body {
+          background-color: #ffffff;
+          color: #000000e5;
+        }
+      }
+    </style>
   </head>
   <body>
+    <button id="toggle-screenshots">Pause</button>
+    <br />
     <button id="take-screenshot">Screenshot</button>
-    <button id="toggle-screenshots">Stop</button>
+    <p id="app-state-label"></p>
     <script>
       require("./index.js");
     </script>
