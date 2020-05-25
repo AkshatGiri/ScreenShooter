@@ -26,16 +26,18 @@ def get_documents_path():
 def get_output_folder_path():
     return get_documents_path() + "/ScreenShooter/Finals"
 
-if len(sys.argv) < 2:
-    raise Exception('No path to screenshot folder was passed')
+if len(sys.argv) < 3:
+    raise Exception('Screenshots folder path and screen number are required.')
 
 folder_path = sys.argv[1]
 folder_name = os.path.basename(folder_path)
 print(f"Searching in folder {folder_name}...")
 
+screen_number = int(sys.argv[2])
+
 # loading images from this folder
 # TODO: Add support for creating video of second screen from terminal
-files = glob.glob(folder_path + '/**/0.jpg', recursive=True)
+files = glob.glob(folder_path + f'/**/{screen_number}.jpg', recursive=True)
 files.sort(key=lambda x: os.path.getmtime(x))
 
 # just to set initial values for the video 
@@ -48,7 +50,7 @@ print(width, height)
 Path(get_output_folder_path()).mkdir(exist_ok=True)
 
 # video output
-out = cv2.VideoWriter(get_output_folder_path() + "/" + folder_name + ' screen 1.mp4', cv2.VideoWriter_fourcc(*'MP4V'), 8, size)
+out = cv2.VideoWriter(get_output_folder_path() + "/" + folder_name + f' screen {screen_number + 1}.mp4', cv2.VideoWriter_fourcc(*'MP4V'), 8, size)
 
 current_img_processing = 1 # keeps track of how many images have been processed
 total_imgs = len(files)
