@@ -19,7 +19,10 @@ To get the video creator to work you would need these python dependencies,
 
 - python3
 - numpy
-- opencv2
+
+System dependencies
+
+- ffmpeg
 
 Once the day is over you can run the python script using the following command  
 `python3 VideoCreator/video_creator.py {folder_path} {screen_number}`
